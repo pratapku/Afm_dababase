@@ -19,7 +19,7 @@ from .import views
 from .views import UserDetailAPI,RegisterUserAPIView
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+   
     path('',views.index),
     path('register/',RegisterUserAPIView.as_view()),
     path('field/',views.Field.as_view()),
