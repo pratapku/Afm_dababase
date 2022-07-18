@@ -1,4 +1,4 @@
-
+from rest_framework.authtoken.models import Token
 from django.conf import settings
 from django.contrib.auth import get_user_model
 
@@ -89,11 +89,14 @@ class subuserplace(models.Model):
     email = models.ForeignKey(subuseraccess, on_delete=models.CASCADE,primary_key=True,unique=True)
     place_id = models.ForeignKey(place, on_delete=models.CASCADE,unique=True)
 
-#@receiver(post_save,sender=User)
-#def create_room_user(sender,instance,created,**kwargs):
-  # if created:
-  #   room.objects.create(user=instance)
 
-#@receiver(post_save,sender=User)
-#def save_room_user(sender,instance,**kwargs):
- # instance.username.save()
+
+@receiver(post_save,sender=User)
+def save_room_user(sender,instance,**kwargs):
+ instance.username.save()
+
+
+@receiver(post_save, sender=settings.AUTH_USER_MODEL)
+def create_auth_token(sender, instance=None, created=False, **kwargs):
+    if created:
+        Token.objects.create(user=instance)
