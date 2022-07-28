@@ -39,8 +39,7 @@ urlpatterns = [
     path('subuseraccess/',views.Subuseraccess.as_view()),
     path('subuseraccessupdate/<int:pk>/',views.SubuseraccessRetrieveUpdateDestroy.as_view()),
     #
-    path('place/',views.Place.as_view()),
-    path('placeupdate/<int:pk>/',views.PlaceRetrieveUpdateDestroy.as_view()),
+    
     #
     path('subuserplace/',views.Subuserplace.as_view()),
     path('subuserplaceupdate/<int:pk>/',views.SubuserplaceRetrieveUpdateDestroy.as_view()),

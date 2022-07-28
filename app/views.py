@@ -277,13 +277,7 @@ class SubuseraccessRetrieveUpdateDestroy(RetrieveUpdateDestroyAPIView):
     queryset = subuseraccess.objects.all()
     serializer_class = SerSubuseraccess
 #
-class Place(ListCreateAPIView):
-    queryset = place.objects.all()
-    serializer_class = SerPlace
 
-class PlaceRetrieveUpdateDestroy(RetrieveUpdateDestroyAPIView):
-    queryset = place.objects.all()
-    serializer_class = SerPlace
 #
 class Subuserplace (ListCreateAPIView):
     queryset = subuserplace.objects.all()
