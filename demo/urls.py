@@ -18,9 +18,19 @@ from rest_framework.authtoken import views
 from django.urls import path ,include
 from django.conf import settings
 from django.conf.urls.static import static
-
+# from app import views
+from app import views as myapp_view
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', views.obtain_auth_token),
     path('',include('app.urls')),
+    path('addyourdevice/', myapp_view.deviceList),
+    path('getyourdevice/', myapp_view.devicegetList),
+    path('getallyourdevice/', myapp_view.devicegetallList),
+    path('getpostdevicePinStatus/', myapp_view.devicePinStatus),
+    path('getpostdevicePinName/', myapp_view.devicePinName),
+
+    
+
+    path('getuid/', myapp_view.useridList),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

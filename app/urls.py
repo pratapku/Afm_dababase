@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from app import views
+from app import views as app_view
 from .import views
 from .views import UserDetailAPI,RegisterUserAPIView
 
@@ -22,14 +24,14 @@ urlpatterns = [
    
     path('',views.index),
     path('register/',RegisterUserAPIView.as_view()),
-    path('field/',views.Field.as_view()),
-    path('fieldupdate/<int:pk>/',views.fieldRetrieveUpdateDestroy.as_view()),
-    #
-    path('device/',views.Device.as_view()),
-    path('deviceupdate/<int:pk>/',views.deviceRetrieveUpdateDestroy.as_view()),
-    #
-    path('deviceStatus/',views.DeviceStatus.as_view()),
-    path('deviceStatusupdate/<int:pk>/',views.deviceRetrieveUpdateDestroy.as_view()),
+    path('addyourplace/',app_view.placeList),
+    path('getallplaces/', app_view.placegetList),
+                   ###
+    path('getallplacesbyonlyplaceidp_id/', app_view.placegetallList),
+    path('addyourfloor/',app_view.fieldList),
+    path('getallfield/', app_view.fieldgetList),
+    ####
+    path('getallfloorsbyonlyplaceidp_id/', app_view.fieldgetallList),
     ##
     path('pin/',views.pinname.as_view()),
     path('pinsupdate/<int:pk>/',views.pinRetrieveUpdateDestroy.as_view()),
@@ -42,5 +44,7 @@ urlpatterns = [
     #
     path('subuserplace/',views.Subuserplace.as_view()),
     path('subuserplaceupdate/<int:pk>/',views.SubuserplaceRetrieveUpdateDestroy.as_view()),
-   
+        ######
+    path('giveaccesstotempuser/', app_view.tempU),
+    path('getalldatayouaddedtempuser/', app_view.tempulist),
 ]

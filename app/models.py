@@ -1,3 +1,4 @@
+from xml.etree.ElementInclude import default_loader
 from rest_framework.authtoken.models import Token
 from django.conf import settings
 from django.contrib.auth import get_user_model
@@ -13,19 +14,20 @@ from app.utils import create_new_ref_number, dt
 class place(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     # field_id = models.ForeignKey(field, on_delete=models.CASCADE)
-    p_id = models.CharField(max_length = 10,blank=False,unique=True,primary_key=True,default=create_new_ref_number)
-    p_type = models.CharField(max_length=15)
+    place_id = models.CharField(max_length = 10,blank=False,unique=True,primary_key=True,default=create_new_ref_number)
+    place_type = models.CharField(max_length=15)
+    
 class field(models.Model):
     user_id = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
    # user = models.ForeignKey(User, on_delete=models.CASCADE)
     place_id = models.ForeignKey(place, on_delete=models.CASCADE)
+    field_id = models.CharField(max_length=10, blank=False, unique=True, primary_key=True, default=create_new_ref_number)
 
     field_name = models.CharField(max_length=15)
-    field_id = models.CharField(max_length=10, blank=False, unique=True, primary_key=True, default=create_new_ref_number)
     def __str__(self):
       return self.field_name
 class allDevices(models.Model):
-    allDevices_id_id = models.CharField(max_length=40, default=0,primary_key=True)
+    allDevices_id= models.CharField(max_length=40, default=0,primary_key=True)
 
 class device(models.Model):
     user_id=models.ForeignKey(User,on_delete=models.CASCADE)
@@ -36,14 +38,7 @@ class device(models.Model):
     #   return self.field_id
 
 class Device_status(models.Model):
-    allDevices_id_id = models.OneToOneField(allDevices, on_delete=models.CASCADE,primary_key=True)
-    # pin1Name = models.CharField(blank=True,null=True,max_length=20)
-    # pin2Name = models.CharField(blank=True,null=True,max_length=20)
-    # pin3Name = models.CharField(blank=True,null=True,max_length=20)
-    
-    # allDevices_id = models.OneToOneField(allDevices, on_delete=models.CASCADE)
-    # pin1Name = models.CharField(blank=True,null=True,max_length=20)
-    # pin2Name = models.CharField(blank=True,null=True,max_length=20)
+    allDevices_id = models.OneToOneField(allDevices, on_delete=models.CASCADE,primary_key=True)
     pin2Status = models.IntegerField(blank=True,null=True,default=0)
     pin1Status = models.IntegerField(blank=True,null=True,default=0)
     pin3Status = models.IntegerField(blank=True,null=True,default=0)
@@ -62,7 +57,7 @@ class Device_status(models.Model):
     #   return self.d_id
 
 class Pin_name(models.Model):
-    allDevices_id_id = models.OneToOneField(allDevices, on_delete=models.CASCADE,primary_key=True)
+    allDevices_id = models.OneToOneField(allDevices, on_delete=models.CASCADE,primary_key=True)
     pin1Name = models.CharField(blank=True,null=True,max_length=20)
     pin2Name = models.CharField(blank=True,null=True,max_length=20)
     pin3Name = models.CharField(blank=True,null=True,max_length=20)
@@ -89,7 +84,19 @@ class subuserplace(models.Model):
     email = models.ForeignKey(subuseraccess, on_delete=models.CASCADE,primary_key=True,unique=True)
     place_id = models.ForeignKey(place, on_delete=models.CASCADE,unique=True)
 
-
+class tempuser(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    owner_name = models.CharField(max_length=20, blank=True)
+    mobile = models.CharField(max_length=10, blank=True)
+    email =models. EmailField(blank=True)
+    name = models.CharField(max_length=100,blank=False)
+    date = models.DateField(default="2000-01-01",null=True)
+    timing = models.TimeField(default='00:00')
+    place_id = models.ForeignKey(place, on_delete=models.CASCADE, blank=True, null=True)
+    field_id = models.ForeignKey(field, on_delete=models.CASCADE, blank=True, null=True)
+    device_id = models.ForeignKey(device, on_delete=models.CASCADE, blank=True, null=True)
+    # r_id = models.ForeignKey(room, on_delete=models.CASCADE, blank=True, null=True)
+    allDevices_id = models.ForeignKey(allDevices, on_delete=models.CASCADE, blank=True, null=True)
 
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
