@@ -19,18 +19,98 @@ from django.urls import path ,include
 from django.conf import settings
 from django.conf.urls.static import static
 # from app import views
-from app import views as myapp_view
+from myapp import views as myapp_view
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', views.obtain_auth_token),
-    path('',include('app.urls')),
+    path('',include('myapp.urls')),
+
+    path('getthedataofuser/',myapp_view.userdataList),
+
+    ################       user related path         ##########################
+    # path('login/',myapp_view.Login,name='login'),
+    # path('logout/',auth.LogoutView.as_view(template_name='user/index.html'),name='logout'),
+    # path('register/',myapp_view.register,name='register'),
+    path('addyourplace/',myapp_view.placeList),
+
+    path('addyourfield/',myapp_view.fieldList),
+    # path('addyourflat/',myapp_view.flatList),
+    # path('addroom/', myapp_view.roomList),
     path('addyourdevice/', myapp_view.deviceList),
-    path('getyourdevice/', myapp_view.devicegetList),
-    path('getallyourdevice/', myapp_view.devicegetallList),
-    path('getpostdevicePinStatus/', myapp_view.devicePinStatus),
-    path('getpostdevicePinName/', myapp_view.devicePinName),
+    # path('schedulingpinsalltheway/',myapp_view.pinscheduling),
+    # path('scheduledatagetbyid/', myapp_view.pinschedulingdevice),
+    
+
+    path('getallplaces/', myapp_view.placegetList),
+    path('getallfields/', myapp_view.fieldgetList),
+    # path('getallflats/', myapp_view.flatgetList),
+    # path('getallrooms/', myapp_view.roomgetList),
+    
+    path('getallplacesbyonlyplaceidp_id/', myapp_view.placegetallList),
+    path('getallfieldsbyonlyplaceidp_id/', myapp_view.fieldgetallList),
+    # path('getallflatbyonlyflooridf_id/', myapp_view.flatgetallList),
+    # path('getallroomsbyonlyflooridf_id/', myapp_view.roomgetallList),
+    path('getalldevicesbyonlyroomidr_id/', myapp_view.devicegetallList),
+    
+    path('getpostdeviceStatus/', myapp_view.devicePinStatus),
+    path('webhookapi/', myapp_view.webhook),
+    # path('getpostemergencynumber/', myapp_view.emerNumber),
+    # path('tensensorsdata/', myapp_view.sensorsList),
+    # path('ssidpassword/', myapp_view.ssidList),
+    path('editpinnames/', myapp_view.devicePinNames),
+    # path('addprofileimage/', myapp_view.profoto),
+    # path('addipaddress/', myapp_view.ipaddressList),
+    # path('subuseraccess/', myapp_view.subuaccess),
+    path('subuserpalceaccess/', myapp_view.subuplace),
+    # path('subuserfindall/', myapp_view.subuserfind),
+    # path('subfindsubdata/', myapp_view.subuserfindsubuser),
+
+    path('getuid/', myapp_view.useridList),
+
+###############  Getting Names    ####################
+    path('getyouplacename/', myapp_view.placenamelist),
+    # path('getyoufloorname/', myapp_view.floornamelist),
+    # path('getyouflatname/', myapp_view.flatnamelist),
+    # path('getyouroomname/', myapp_view.roomnamelist),
+
+
+########## for main user to get the list of subuser  ##############
+    path('getalldatayouadded/', myapp_view.subuplaceget),
+
+########## for main user to get the list of temporary user  ##############
+    path('getalldatayouaddedtempuser/', myapp_view.tempulist),
+
+######### tamporary user otp login #######################
+
+    # path('giveaccesstotempuser/', myapp_view.tempU),
+    # path('loginotpsend/', myapp_view.tempu),
+    # path('tempuserloginwithotp/', myapp_view.tempulogin),
+    # path('tempuserautodelete/', myapp_view.tempuserautodelete),
+
+    ###### Bill pridiction #############3
+
+    # path('energyconsume/', myapp_view.enerzyList),
+    # path('pertenminuteenergy/',myapp_view.pertenminute),
+    # path('perhourenergy/',myapp_view.perhour),
+    # path('perdaysenergy/',myapp_view.perday),
+    # path('peryearenergy/',myapp_view.peryear),
+
+
+
+
+
+
+    # path('testkrlo/', myapp_view.my_django_view)
+
+    # path('testimages123/', myapp_view.testimages123),
+
+
+    # path('user/',views.employeesList.as_view()),
+    # path('firmwareupdate/', myapp_view.firmwareupdate),
+    # path('firmwarecheck/', myapp_view.firmwarecheck),
+    
 
     
 
-    path('getuid/', myapp_view.useridList),
+    
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
