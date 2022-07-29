@@ -57,7 +57,7 @@ urlpatterns = [
     # path('getpostemergencynumber/', myapp_view.emerNumber),
     # path('tensensorsdata/', myapp_view.sensorsList),
     # path('ssidpassword/', myapp_view.ssidList),
-    # path('editpinnames/', myapp_view.devicePinNames),
+    path('editpinnames/', myapp_view.devicePinNames),
     path('getpostPinName/',myapp_view.devicePinNames),
     # path('addprofileimage/', myapp_view.profoto),
     # path('addipaddress/', myapp_view.ipaddressList),
