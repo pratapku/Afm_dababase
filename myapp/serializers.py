@@ -238,6 +238,7 @@ class deviceStatusSerializers(serializers.ModelSerializer):
         fields = '__all__'
         ########
 # from .models import post
+# from .models import post
 from rest_framework import serializers
 from django.contrib.auth.models import User
 from rest_framework.response import Response
@@ -245,10 +246,10 @@ from rest_framework import status
 from rest_framework.validators import UniqueValidator
 from django.contrib.auth.password_validation import validate_password
 
-# class PostSer(serializers.ModelSerializer):
-#     class Meta:
-#         model = post
-#         fields = '__all__'
+class PostSer(serializers.ModelSerializer):
+    class Meta:
+        # model = post
+        fields = '__all__'
 
 class UserSerializer(serializers.ModelSerializer):
   class Meta:
@@ -286,3 +287,6 @@ class RegisterSerializer(serializers.ModelSerializer):
       first_name=validated_data['first_name'],
       last_name=validated_data['last_name']
     )
+    user.set_password(validated_data['password'])
+    user.save()
+    return user

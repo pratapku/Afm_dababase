@@ -52,6 +52,7 @@ REST_FRAMEWORK = {
                 'rest_framework.permissions.AllowAny',
     ],
 }
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
