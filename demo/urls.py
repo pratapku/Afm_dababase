@@ -22,7 +22,7 @@ from django.conf.urls.static import static
 from myapp import views as myapp_view
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('login/', views.obtain_auth_token),
+    path('api/login/', views.obtain_auth_token),
     path('',include('myapp.urls')),
 
     path('getthedataofuser/',myapp_view.userdataList),
