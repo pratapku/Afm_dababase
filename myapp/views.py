@@ -225,7 +225,7 @@ def fieldgetallList(request):
 @api_view(["GET","POST","DELETE"])
 def deviceList(request):
     if request.method=="GET":
-        room_data = device.objects.filter(user = request.user,r_id=request.GET['r_id'])
+        room_data = device.objects.filter(user = request.user,f_id=request.GET['f_id'])
         roomJson = deviceSerializers(room_data, many=True)
         # rr = roomJson.data[:]
         return Response(roomJson.data)
@@ -237,7 +237,7 @@ def deviceList(request):
             return Response("data created", status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     elif request.method == "DELETE":
-        data = device.objects.filter(r_id=request.GET['r_id'], d_id=request.GET['d_id'])
+        data = device.objects.filter(r_id=request.GET['f_id'], d_id=request.GET['f_id'])
         # data2 = subuseraccess.objects.filter(email=request.GET['email'])
         # placeJson = subuserplaceSerializers(data, many=True)
         data.delete()
@@ -247,7 +247,7 @@ def deviceList(request):
 @api_view(["GET"])
 def devicegetList(request):
     if request.method=="GET":
-        room_data = device.objects.filter(user = request.user,r_id=request.GET['r_id'])
+        room_data = device.objects.filter(user = request.user,f_id=request.GET['f_id'])
         devJson = deviceSerializers(room_data, many=True)
         return Response(devJson.data)
 
@@ -257,7 +257,7 @@ def devicegetList(request):
 @api_view(["GET"])
 def devicegetallList(request):
     if request.method=="GET":
-        room_data = device.objects.filter(r_id=request.GET['r_id'])
+        room_data = device.objects.filter(f_id=request.GET['f_id'])
         devJson = deviceSerializers(room_data, many=True)
         return Response(devJson.data)
 
@@ -2332,78 +2332,78 @@ def devicePinNames(request):
 
 
 
-# @api_view(["GET","POST","PUT","DELETE"])
-# def subuaccess(request):
-#     # if request.method=="GET":
-#     #     data = subuseraccess.objects.filter(user=request.user, p_id=request.GET['p_id'])
-#     #     placeJson = floorSerializers(data, many=True)
-#     #     print(data)
-#     #     return Response(placeJson.data)
-#     #     # return Response(device_data)
+@api_view(["GET","POST","PUT","DELETE"])
+def subuaccess(request):
+    # if request.method=="GET":
+    #     data = subuseraccess.objects.filter(user=request.user, p_id=request.GET['p_id'])
+    #     placeJson = floorSerializers(data, many=True)
+    #     print(data)
+    #     return Response(placeJson.data)
+    #     # return Response(device_data)
 
-#     if request.method == "POST":
-#         # received_json_data=json.loads(request.body)
-#         serializer = subuseraccessSerializers(data=request.data)
-#         # email12 = subuseraccess.objects.filter()
-#         # subJson1 = subuseremailSerializers(email12, many=True)
-#         # # success = False
-#         # for x in list(subJson1.data):
-#         #     xc = x["emailtest"]
-#         #     print(xc)
-#         # xc = ["emailtest"]
-#         # if User.objects.filter(email=xc).exists():
-#         #     print("ssucessss")
-#         #     if serializer.is_valid():
-#         #         serializer.save()
-#         #         return Response("data created", status=status.HTTP_201_CREATED)
-#         # email1 = subuseraccess.objects.filter(user=request.GET['user'])
-#         # email1 = "ppp@gm.com"
-#         # if User.objects.filter(email=email1).exists():
-#         # email = User.objects.filter(user=request.GET['email'])
-#         # if User.objects.get(user=request.GET['email']).exists():
-#         if serializer.is_valid():
-#             print("xtz")
-#             # email1 = "ppp@gm.com"
-#             # if User.objects.filter(email=email1).exists():
-#         # email1 = User.objects.get(user=request.GET['email'])
-#         # print(email1)
-#         # email1 = "pankajpalariya21@gmai.com"
-#         # email1 = request.POST['email']
-#             serializer.save()
-#             # email = subuseraccess.objects.filter(user=request.GET['email'])
-#             # print(email)
-#             email12 = subuseraccess.objects.filter()
-#             subJson1 = subuseremailSerializers(email12, many=True)
-#             success = False
-#             # for x in list(subJson1.data):
-#             xc = list(subJson1.data)[-1]["emailtest"]
-#             print(xc)
-#                 # print(email12)
-#                 # print(subJson1.data)
-#             if User.objects.filter(email=xc).exists():
-#                 # user1 = User.objects.filter(name__contains='email')
-#                 # user1 = User.objects.all()
-#                 # print(user1)
-#                 # userJson = userSerializers(user1, many=True)
-#                 # main = list(userJson.data)
-#                 # print(main)
-#                     # print(subuseraccess.emailtest)
-#                     # print(email)
-#                 success = Response("email added as a SUB-USER", status=status.HTTP_201_CREATED)
-#             else:
-#                 xcdelete = subuseraccess.objects.last()
-#                 print(xcdelete)
-#                 xcdelete.delete()
-#                 return Response("Email not exists.")
-#             return success if success else Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-#     elif request.method == "DELETE":
-#         data = subuserplace.objects.filter(email=request.GET['email'], p_id=request.GET['p_id'])
-#         # data2 = subuseraccess.objects.filter(email=request.GET['email'])
-#         # placeJson = subuserplaceSerializers(data, many=True)
-#         data.delete()
-#         # data2.delete()
-#         return Response("removed")
+    if request.method == "POST":
+        # received_json_data=json.loads(request.body)
+        serializer = subuseraccessSerializers(data=request.data)
+        # email12 = subuseraccess.objects.filter()
+        # subJson1 = subuseremailSerializers(email12, many=True)
+        # # success = False
+        # for x in list(subJson1.data):
+        #     xc = x["emailtest"]
+        #     print(xc)
+        # xc = ["emailtest"]
+        # if User.objects.filter(email=xc).exists():
+        #     print("ssucessss")
+        #     if serializer.is_valid():
+        #         serializer.save()
+        #         return Response("data created", status=status.HTTP_201_CREATED)
+        # email1 = subuseraccess.objects.filter(user=request.GET['user'])
+        # email1 = "ppp@gm.com"
+        # if User.objects.filter(email=email1).exists():
+        # email = User.objects.filter(user=request.GET['email'])
+        # if User.objects.get(user=request.GET['email']).exists():
+        if serializer.is_valid():
+            print("xtz")
+            # email1 = "ppp@gm.com"
+            # if User.objects.filter(email=email1).exists():
+        # email1 = User.objects.get(user=request.GET['email'])
+        # print(email1)
+        # email1 = "pankajpalariya21@gmai.com"
+        # email1 = request.POST['email']
+            serializer.save()
+            # email = subuseraccess.objects.filter(user=request.GET['email'])
+            # print(email)
+            email12 = subuseraccess.objects.filter()
+            subJson1 = subuseremailSerializers(email12, many=True)
+            success = False
+            # for x in list(subJson1.data):
+            xc = list(subJson1.data)[-1]["emailtest"]
+            print(xc)
+                # print(email12)
+                # print(subJson1.data)
+            if User.objects.filter(email=xc).exists():
+                # user1 = User.objects.filter(name__contains='email')
+                # user1 = User.objects.all()
+                # print(user1)
+                # userJson = userSerializers(user1, many=True)
+                # main = list(userJson.data)
+                # print(main)
+                    # print(subuseraccess.emailtest)
+                    # print(email)
+                success = Response("email added as a SUB-USER", status=status.HTTP_201_CREATED)
+            else:
+                xcdelete = subuseraccess.objects.last()
+                print(xcdelete)
+                xcdelete.delete()
+                return Response("Email not exists.")
+            return success if success else Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    elif request.method == "DELETE":
+        data = subuserplace.objects.filter(email=request.GET['email'], p_id=request.GET['p_id'])
+        # data2 = subuseraccess.objects.filter(email=request.GET['email'])
+        # placeJson = subuserplaceSerializers(data, many=True)
+        data.delete()
+        # data2.delete()
+        return Response("removed")
 
 # ########## for main user to get the list of subuser  ##############
 @api_view(["GET"])

@@ -27,10 +27,10 @@ class userlogingetdataSerializers(serializers.ModelSerializer):
 #         model = User
 #         fields = ('first_name',)
 
-# class subuseremailSerializers(serializers.ModelSerializer):
-#     class Meta:
-#         model = subuseraccess
-#         fields = ('emailtest',)
+class subuseremailSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = subuseraccess
+        fields = ('emailtest',)
 
 # # class user_register(FormSerializer):
 # #     class Meta(object):
