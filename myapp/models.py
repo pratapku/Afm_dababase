@@ -71,6 +71,10 @@ class deviceStatus(models.Model):
     pin5Status = models.IntegerField(blank=True,null=True,default=0)
     pin6Status = models.IntegerField(blank=True,null=True,default=0)
     pin7Status = models.IntegerField(blank=True,null=True,default=0)
+    pin8Status = models.IntegerField(blank=True,null=True,default=0)
+    pin9Status = models.IntegerField(blank=True,null=True,default=0)
+    pin10Status = models.IntegerField(blank=True,null=True,default=0)
+    
     sensor1 = models.FloatField(unique = False, max_length=50,default=0.0, blank=True)
     sensor2 = models.FloatField(unique = False, max_length=50,default=0.0, blank=True)
     sensor3 = models.FloatField(unique = False, max_length=50,default=0.0, blank=True)
@@ -78,6 +82,10 @@ class deviceStatus(models.Model):
     sensor5 = models.FloatField(unique = False, max_length=50,default=0.0, blank=True)
     sensor6 = models.FloatField(unique = False, max_length=50,default=0.0, blank=True)
     sensor7 = models.FloatField(unique = False, max_length=50,default=0.0, blank=True)
+    sensor8 = models.FloatField(unique = False, max_length=50,default=0.0, blank=True)
+    sensor9 = models.FloatField(unique = False, max_length=50,default=0.0, blank=True)
+    sensor10 = models.FloatField(unique = False, max_length=50,default=0.0, blank=True)
+    
     # def __str__(self):
     #   return self.d_id
 
