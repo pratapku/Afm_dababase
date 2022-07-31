@@ -267,19 +267,18 @@ def devicegetallList(request):
 
 
 #                                 ###########   PinStatus   #################
-
 @api_view(["GET","POST","PUT"])
 def devicePinStatus(request):
 
     if request.method == "GET":
-        device_data = pinName.objects.filter(d_id=request.GET['d_id'])
-        roomJson = pinnamesSerializers(device_data, many=True)
+        device_data = deviceStatus.objects.filter(d_id=request.GET['d_id'])
+        roomJson = deviceStatusSerializers(device_data, many=True)
         dd = roomJson.data[:]
         return Response(dd[0])
 
     elif request.method == "POST":
         received_json_data=json.loads(request.body)
-        serializer = pinnamesSerializers(data=request.data)
+        serializer = deviceStatusSerializers(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response("data created", status=status.HTTP_201_CREATED)
@@ -291,49 +290,14 @@ def devicePinStatus(request):
         print('all set')
         try:
             print('excecuted')
-            device_object=pinName.objects.get(d_id=device_id)
+            device_object=deviceStatus.objects.get(d_id=device_id)
         except device_object.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
-        serializer = pinnamesSerializers(device_object, data=request.data)
+        serializer = deviceStatusSerializers(device_object, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response("data updated", status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-#         ################# pin time Scheduling   #######################
-
-
-    
-#         print('all set')
-#         try:
-#             print('excecuted')
-#             device_object=pinschedule.objects.get(d_id=device_id,id=id)
-#         except device_object.DoesNotExist:
-#             return Response(status=status.HTTP_404_NOT_FOUND)
-#         serializer = pinscheduleSerializers(device_object, data=request.data)
-#         if serializer.is_valid():
-#             serializer.save()
-#             return Response("data updated", status=status.HTTP_201_CREATED)
-#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
-#     elif request.method == "DELETE":
-#         # data1 = pinschedule.objects.all()
-#         # data1Json = pinscheduleSerializers(data1, many=True)
-#         device_data = pinschedule.objects.filter(user = request.GET['user'], id=request.GET['id'])#d_id=request.GET['d_id'], date1=request.GET['date1'], timing1=request.GET['timing1'], pin1Status=request.GET['pin1Status'])
-#         device_data.delete()
-#         # for data in data1Json.data:
-#         #     var1 = data['pin1Status']
-#         #     var2 = data['pin2Status']
-#         #     var3 = data['pin3Status']
-#         #     var4 = data['pin4Status']
-#         #     var5 = data['pin5Status']
-#         #     var6 = data['pin6Status']
-#         #     var7 = data['pin7Status']
-#         #     var8 = data['pin8Status']
-#         #     var9 = data['pin9Status']
-#         #     var10 = data['pin10Status']
-#         #     var11 = data['pin11Status']
-#         #     var
 
 # ################################### Update Pin Status For DilogFlow ###################################  OK GOOGLE  ######################
 
