@@ -42,20 +42,20 @@ smart_device = (
 
 class place(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    p_id = models.CharField(max_length = 10,blank=False,unique=True,default=create_new_ref_number)
+    p_id = models.CharField(max_length = 10,blank=False,unique=True,primary_key=True,default=create_new_ref_number)
     p_type = models.CharField(max_length=15,unique=True)
 
 class field(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     p_id = models.ForeignKey(place, max_length=10, null=False, default=1,on_delete=models.CASCADE)
-    f_id = models.CharField(max_length = 10, blank=False,unique=True,default=create_new_ref_number)
+    f_id = models.CharField(max_length = 10, blank=False,unique=True,primary_key=True,default=create_new_ref_number)
     f_name = models.CharField(max_length=15,unique=True)
 
 class allDevices(models.Model):
     d_id= models.CharField(max_length=40, default=0,primary_key=True)
 
 class device(models.Model):
-    user=models.ForeignKey(User,on_delete=models.CASCADE,unique=True)
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
     f_id = models.ForeignKey(field, on_delete=models.CASCADE)
     d_id = models.OneToOneField(allDevices, on_delete=models.CASCADE)
     date_installed = models.DateField(default=dt)
@@ -124,16 +124,16 @@ class subuseraccess(models.Model):
 #9300683
 class subuserplace(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    owner_name = models.CharField(max_length=20, blank=True)
-    name = models.CharField(max_length=100, blank=False)
-    email = models.ForeignKey(subuseraccess, on_delete=models.CASCADE,unique=True)
+    owner_name = models.CharField(max_length=20, blank=True,unique=True)
+    name = models.CharField(max_length=100, blank=False,unique=True)
+    email = models.ForeignKey(subuseraccess, on_delete=models.CASCADE,primary_key=True,unique=True)
     p_id = models.ForeignKey(place, on_delete=models.CASCADE,unique=True)
 
 class tempuser(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    owner_name = models.CharField(max_length=20, blank=True)
-    mobile = models.CharField(max_length=10, blank=True)
-    email =models. EmailField(blank=True)
+    owner_name = models.CharField(max_length=20, blank=True,unique=True)
+    mobile = models.CharField(max_length=10, blank=True,unique=True)
+    email =models. EmailField(blank=True,unique=True)
     name = models.CharField(max_length=100,blank=False)
     date = models.DateField(default="2000-01-01",null=True)
     timing = models.TimeField(default='00:00')
