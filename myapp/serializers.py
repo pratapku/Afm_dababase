@@ -5,7 +5,7 @@ from rest_framework import serializers
 from django.contrib.auth.models import User
 # from drf_braces.serializers.form_serializer import FormSerializer
 # from myapp.forms import UserRegisterForm, SubUserRegisterForm
-from myapp.models import deviceStatus, pinName, place,field,device, subuseraccess, subuserplace, tempuser
+from myapp.models import deviceStatus, place,field,device, subuseraccess, subuserplace, tempuser
 
 class userSerializers(serializers.ModelSerializer):
     class Meta:
@@ -102,10 +102,10 @@ class deviceSerializers(serializers.ModelSerializer):
 
 
 
-class pinnamesSerializers(serializers.ModelSerializer):
-    class Meta:
-        model = pinName
-        fields = '__all__'
+# class pinnamesSerializers(serializers.ModelSerializer):
+#     class Meta:
+#         model = pinName
+#         fields = '__all__'
 
 # class pinscheduleSerializers(serializers.ModelSerializer):
 #     class Meta:

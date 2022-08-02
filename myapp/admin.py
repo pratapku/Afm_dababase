@@ -18,7 +18,7 @@ admin.site.register(device)
 
 admin.site.register(deviceStatus)
 
-admin.site.register(pinName)
+# admin.site.register(pinName)
 admin.site.register(subuseraccess)
 
 

@@ -36,7 +36,7 @@ urlpatterns = [
     path('getallfieldsbyonlyplaceidp_id/', myapp_view.fieldgetallList),
     path('getpostdeviceStatus/', myapp_view.devicePinStatus),
     path('webhookapi/', myapp_view.webhook),
-    path('getpostPinName/',myapp_view.devicePinNames),
+    # path('getpostPinName/',myapp_view.devicePinNames),
     path('subuseraccess/', myapp_view.subuaccess),
     path('subuserpalceaccess/', myapp_view.subuplace),
     ################       user related path         ##########################

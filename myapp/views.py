@@ -334,36 +334,36 @@ def webhook(request):
 #                                             ######+en20+en30+############### Device Pin Names ##################
 
 
-@api_view(["GET","POST","PUT"])
-def devicePinNames(request):
-    if request.method == "GET":
-        device_data = pinName.objects.filter(d_id=request.GET['d_id'])
-        roomJson = pinnamesSerializers(device_data, many=True)
-        dd = roomJson.data[:]
-        return Response(dd[0])
+# @api_view(["GET","POST","PUT"])
+# def devicePinNames(request):
+#     if request.method == "GET":
+#         device_data = pinName.objects.filter(d_id=request.GET['d_id'])
+#         roomJson = pinnamesSerializers(device_data, many=True)
+#         dd = roomJson.data[:]
+#         return Response(dd[0])
 
-    elif request.method == "POST":
-        received_json_data=json.loads(request.body)
-        serializer = pinnamesSerializers(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response("data created", status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    # elif request.method == "POST":
+    #     received_json_data=json.loads(request.body)
+    #     serializer = pinnamesSerializers(data=request.data)
+    #     if serializer.is_valid():
+    #         serializer.save()
+    #         return Response("data created", status=status.HTTP_201_CREATED)
+    #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    elif request.method == "PUT":
-        received_json_data=json.loads(request.body)
-        device_id=received_json_data['d_id']
-        print('all set')
-        try:
-            print('excecuted')
-            device_object=pinName.objects.get(d_id=device_id)
-        except device_object.DoesNotExist:
-            return Response(status=status.HTTP_404_NOT_FOUND)
-        serializer = pinnamesSerializers(device_object, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response("data updated", status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    # elif request.method == "PUT":
+    #     received_json_data=json.loads(request.body)
+    #     device_id=received_json_data['d_id']
+    #     print('all set')
+    #     try:
+    #         print('excecuted')
+    #         device_object=pinName.objects.get(d_id=device_id)
+    #     except device_object.DoesNotExist:
+    #         return Response(status=status.HTTP_404_NOT_FOUND)
+    #     serializer = pinnamesSerializers(device_object, data=request.data)
+        # if serializer.is_valid():
+        #     serializer.save()
+        #     return Response("data updated", status=status.HTTP_201_CREATED)
+        # return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 #         ################# pin time Scheduling   #######################
 

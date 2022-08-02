@@ -85,12 +85,6 @@ class deviceStatus(models.Model):
     sensor8 = models.FloatField(unique = False, max_length=50,default=0.0, blank=True)
     sensor9 = models.FloatField(unique = False, max_length=50,default=0.0, blank=True)
     sensor10 = models.FloatField(unique = False, max_length=50,default=0.0, blank=True)
-    
-    # def __str__(self):
-    #   return self.d_id
-
-class pinName(models.Model):
-    d_id = models.OneToOneField(allDevices, on_delete=models.CASCADE,primary_key=True)
     pin1Name = models.CharField(blank=True,null=True,max_length=20,default='Device1,001')
     pin2Name = models.CharField(blank=True,null=True,max_length=20,default='Device2,001')
     pin3Name = models.CharField(blank=True,null=True,max_length=20,default='Device3,001')
@@ -111,6 +105,12 @@ class pinName(models.Model):
     pin18Name = models.CharField(blank=True,null=True,max_length=20,default='Device18,001')
     pin19Name = models.CharField(blank=True,null=True,max_length=20,default='Device19,001')
     pin20Name = models.CharField(blank=True,null=True,max_length=20,default='Device20,001')
+    # def __str__(self):
+    #   return self.d_id
+
+# class pinName(models.Model):
+#     d_id = models.OneToOneField(allDevices, on_delete=models.CASCADE,primary_key=True)
+   
 
    
     # def __str__(self):
