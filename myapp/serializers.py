@@ -5,7 +5,7 @@ from rest_framework import serializers
 from django.contrib.auth.models import User
 # from drf_braces.serializers.form_serializer import FormSerializer
 # from myapp.forms import UserRegisterForm, SubUserRegisterForm
-from myapp.models import deviceStatus, place,field,device, subuseraccess, subuserplace, tempuser
+from myapp.models import deviceStatus, place,field,device, subuseraccess, subuserplace, tempuser,allDevices
 
 class userSerializers(serializers.ModelSerializer):
     class Meta:
@@ -32,21 +32,7 @@ class subuseremailSerializers(serializers.ModelSerializer):
         model = subuseraccess
         fields = ('emailtest',)
 
-# # class user_register(FormSerializer):
-# #     class Meta(object):
-# #         form = UserRegisterFormREST_FRAMEWORK = {
-#     'DEFAULT_AUTHENTICATION_CLASSES': [
-#         'rest_framework.authentication.TokenAuthentication',
-#     ],
-#     'DEFAULT_PERMISSION_CLASSES': [
-#                 'rest_framework.permissions.IsAuthenticated',
-#                 'rest_framework.permissions.AllowAny',
-#     ],
-# }
-
-# # class subuser_register(FormSerializer):
-# #     class Meta(object):
-# #         form = SubUserRegisterForm
+#_fr= SubUserRegisterForm
 
 class placeSerializers(serializers.ModelSerializer):
     class Meta:
@@ -82,10 +68,10 @@ class fieldnameSerializers(serializers.ModelSerializer):
 #         fields = ('flt_name','flt_id')
 
 
-# class roomSerializers(serializers.ModelSerializer):
-#     class Meta:
-#         model = room
-#         fields = '__all__'
+class allDeviceSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = allDevices
+        fields = '__all__'
 
 # class roomnameSerializers(serializers.ModelSerializer):
 #     class Meta:
@@ -100,49 +86,6 @@ class deviceSerializers(serializers.ModelSerializer):
 
 
 
-
-
-# class pinnamesSerializers(serializers.ModelSerializer):
-#     class Meta:
-#         model = pinName
-#         fields = '__all__'
-
-# class pinscheduleSerializers(serializers.ModelSerializer):
-#     class Meta:
-#         model = pinschedule
-#         fields = '__all__'
-
-# class pinscheduleTimeSerializers(serializers.ModelSerializer):
-#     class Meta:
-#         model = pinschedule
-#         fields = ('id','d_id','date1','timing1')
-
-# class emernumberSerializers(serializers.ModelSerializer):
-#     class Meta:
-#         model = emergencyNumber
-#         fields = '__all__'
-
-
-# class sensorSerializers(serializers.ModelSerializer):
-#     class Meta:
-#         model = sensors
-#         fields = '__all__'
-
-
-# class ssidPasswordSerializers(serializers.ModelSerializer):
-#     class Meta:
-#         model = ssidPassword
-#         fields = '__all__'
-
-# class userprofileimagesSerializers(serializers.ModelSerializer):
-#     class Meta:
-#         model = userimages
-#         fields = '__all__'
-
-# class deviceipaddressSerializers(serializers.ModelSerializer):
-#     class Meta:
-#         model = deviceIpAddress
-#         fields = '__all__'
 
 class subuseraccessSerializers(serializers.ModelSerializer):
     class Meta:

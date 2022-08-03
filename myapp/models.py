@@ -43,7 +43,7 @@ smart_device = (
 class place(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     p_id = models.CharField(max_length = 10,blank=False,unique=True,primary_key=True,default=create_new_ref_number)
-    p_type = models.CharField(max_length=15,unique=True)
+    p_type = models.CharField(max_length=15)
 
 class field(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -117,31 +117,35 @@ class deviceStatus(models.Model):
     #   return self.d_id
    
 class subuseraccess(models.Model):
-    # emailtest = models.ForeignKey(User, on_delete=models.CASCADE)
+    # user = models.ForeignKey(User, on_delete=models.CASCADE)
     emailtest = EmailField()
     email = models.CharField(primary_key=True, max_length=100)
 
-#9300683
 class subuserplace(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    owner_name = models.CharField(max_length=20, blank=True,unique=True)
-    name = models.CharField(max_length=100, blank=False,unique=True)
-    email = models.ForeignKey(subuseraccess, on_delete=models.CASCADE,primary_key=True,unique=True)
-    p_id = models.ForeignKey(place, on_delete=models.CASCADE,unique=True)
+    owner_name = models.CharField(max_length=20, blank=True)
+    name = models.CharField(max_length=100, blank=False)
+    email = models.ForeignKey(subuseraccess, on_delete=models.CASCADE)
+    p_id = models.ForeignKey(place, on_delete=models.CASCADE)
 
 class tempuser(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    owner_name = models.CharField(max_length=20, blank=True,unique=True)
-    mobile = models.CharField(max_length=10, blank=True,unique=True)
-    email =models. EmailField(blank=True,unique=True)
+    owner_name = models.CharField(max_length=20, blank=True)
+    mobile = models.CharField(max_length=10, blank=True)
+    email = EmailField(blank=True)
     name = models.CharField(max_length=100,blank=False)
     date = models.DateField(default="2000-01-01",null=True)
-    timing = models.TimeField(default='00:00')
+    timing = models.CharField(max_length=200,default='00:00')
     p_id = models.ForeignKey(place, on_delete=models.CASCADE, blank=True, null=True)
     f_id = models.ForeignKey(field, on_delete=models.CASCADE, blank=True, null=True)
     device_id = models.ForeignKey(device, on_delete=models.CASCADE, blank=True, null=True)
     # r_id = models.ForeignKey(room, on_delete=models.CASCADE, blank=True, null=True)
     d_id = models.ForeignKey(allDevices, on_delete=models.CASCADE, blank=True, null=True)
+
+
+
+# class Videos(models.Model):
+#     video = EmbedVideoField()
 
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
