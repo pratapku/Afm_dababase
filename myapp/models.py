@@ -138,9 +138,9 @@ class tempuser(models.Model):
     timing = models.CharField(max_length=200,default='00:00')
     p_id = models.ForeignKey(place, on_delete=models.CASCADE, blank=True, null=True)
     f_id = models.ForeignKey(field, on_delete=models.CASCADE, blank=True, null=True)
-    device_id = models.ForeignKey(device, on_delete=models.CASCADE, blank=True, null=True)
+    # device_id = models.ForeignKey(device, on_delete=models.CASCADE, blank=True, null=True)
     # r_id = models.ForeignKey(room, on_delete=models.CASCADE, blank=True, null=True)
-    d_id = models.ForeignKey(allDevices, on_delete=models.CASCADE, blank=True, null=True)
+    d_id = models.ForeignKey(device, on_delete=models.CASCADE, blank=True, null=True)
 
 
 

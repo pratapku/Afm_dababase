@@ -28,6 +28,7 @@ urlpatterns = [
     path('getthedataofuser/',myapp_view.userdataList),
     path('addyourplace/',myapp_view.placeList),
     path('addyourfield/',myapp_view.fieldList),
+    path('getyoufloorname/', myapp_view.fieldnamelist),
 
     path('addyourdevice/', myapp_view.deviceList),
     path('getallplaces/', myapp_view.placegetList),

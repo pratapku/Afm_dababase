@@ -72,9 +72,10 @@ conn = http.client.HTTPConnection("2factor.in")
 
 def index(request):
     return HttpResponse("Hello pk ......")
-class AllDevice(ListCreateAPIView):
+class alldevice(ListCreateAPIView):
     queryset = allDevices.objects.all()
     serializer_class = allDeviceSerializers
+  
 
 @api_view(["GET","POST","PUT"])
 def userdataList(request):
@@ -211,6 +212,15 @@ def fieldgetList(request):
         floorJson = fieldSerializers(floor_data, many=True)
         return Response(floorJson.data)
 
+@api_view(["GET","POST"])
+def fieldnamelist(request):
+    if request.method == "GET":
+        device_data = field.objects.filter(f_id=request.GET['f_id'])
+        nameJson = fieldnameSerializers(device_data, many=True)
+        # return Response(nameJson.data)
+        # dd = list(nameJson.data)[0]["f_name"]
+        # print(dd)
+        return Response(nameJson.data)
 #                 ################### Without security ###################################
 
 @api_view(["GET"])
@@ -493,7 +503,6 @@ def tempulist(request):
 
                             ########## Auto delete Temporary User  ####################
 
-
 @api_view(["GET","POST","DELETE"])
 def tempU(request):
     if request.method == "GET":
@@ -548,6 +557,8 @@ def tempU(request):
         # data2.delete()
         # data3.delete()
         return Response("Temporary User has no longer Exists.")
+
+
 
 @api_view(["GET"])
 def subuplaceget(request):

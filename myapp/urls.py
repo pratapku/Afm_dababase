@@ -13,10 +13,6 @@ from django.contrib.auth import views as auth_views
 urlpatterns = [
     path('' , views.index,),
     path('api/register/',RegisterUserAPIView.as_view()),
-    path('getpostalldevices',AllDevice.as_view()),
-   
+    path('getpostalldevices/',alldevice.as_view(),name='token_obtain_pair'),
     
-    
-
-
 ]
